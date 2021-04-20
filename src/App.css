@@ -3,10 +3,13 @@
 }
 .App {
   height: 100vh;
+  min-height: 600px;
   width: 100vw;
+  min-width: 1020px;
   background: linear-gradient(
     110.56deg,
     #36d1dc 6%,
     rgba(91, 134, 229, 0.7) 90.26%
   );
+  overflow: hidden;
 }

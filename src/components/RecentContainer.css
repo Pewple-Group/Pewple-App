@@ -1,0 +1,40 @@
+.recent {
+  width: 278px;
+  height: 95%;
+  margin-left: 30px;
+  border-radius: 15px;
+}
+.recent-glass {
+  width: 234px;
+  height: 331px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 4.68px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  backdrop-filter: blur(28.08px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 15px;
+}
+.recent-glass > p {
+  width: 80px;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.recent_title {
+  width: 100%;
+
+  color: #000000;
+  padding-bottom: 2px;
+  border-bottom: 1px solid white;
+}
+
+.recent_title > p {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  margin: 10px;
+}

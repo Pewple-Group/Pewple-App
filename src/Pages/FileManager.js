@@ -1,9 +1,14 @@
 import React from "react";
-
+import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
+import "./FileManager.css";
 function FileManager() {
   return (
     <div className="file-manager">
-      <h1>File Manager</h1>
+      <Sidebar />
+      <div className="main-container">
+        <NavBar />
+      </div>
     </div>
   );
 }

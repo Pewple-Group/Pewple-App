@@ -1,9 +1,15 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
 
+import "./TeamPage.css";
 function TeamPage() {
   return (
     <div className="team-page">
-      <h1>Team-Page</h1>
+      <Sidebar />
+      <div className="main-container">
+        <NavBar />
+      </div>
     </div>
   );
 }

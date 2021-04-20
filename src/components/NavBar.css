@@ -1,0 +1,65 @@
+.navbar {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.8);
+}
+
+.navbar-title {
+  margin-left: 30px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  color: #000000;
+}
+
+.navbar-searchContainer {
+  flex: 1px;
+  height: 32px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.navbar-searchContainer > input {
+  padding-left: 15px;
+  width: 100%;
+
+  height: 100%;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 15px;
+}
+
+.navbar-messenger-btn {
+  display: flex;
+  align-items: center;
+  width: 115px;
+  margin-right: 25px;
+  justify-content: space-between;
+}
+.messanger-logo {
+  width: 25px;
+  height: 25px;
+}
+
+.messenger-logo > img {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-messenger-btn > p {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  color: #000000;
+  font-weight: 500;
+}

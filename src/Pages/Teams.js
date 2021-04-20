@@ -1,9 +1,14 @@
 import React from "react";
 import "./Teams.css";
+import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
 function Teams() {
   return (
     <div className="Teams">
-      <h1>Teams-Page</h1>
+      <Sidebar />
+      <div className="main-container">
+        <NavBar />
+      </div>
     </div>
   );
 }

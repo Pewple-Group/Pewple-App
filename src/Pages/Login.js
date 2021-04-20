@@ -8,6 +8,8 @@ function Login() {
       <div className="login-frame">
         <div className="circle one"></div>
         <div className="circle two"></div>
+        <div className="circle three"></div>
+        <div className="shadow"></div>
         <div className="login-component">
           <p>Log-in</p>
           <form className="Login-form">
@@ -17,7 +19,7 @@ function Login() {
             </div>
             <div className="login-input">
               <p>Password</p>
-              <input type="password" />
+              <input type="password" placeholder="Password" />
             </div>
             <div className="login-button">
               <p>Log-in</p>
@@ -31,6 +33,11 @@ function Login() {
             <div className="login-github">
               <img src={GithubLogo} alt="" />
             </div>
+          </div>
+          <div className="or-statement">
+            <p>
+              ---------- &nbsp; <span>OR</span> &nbsp;----------
+            </p>
           </div>
           <div className="login-create">
             <p>Create a Pewple Account</p>

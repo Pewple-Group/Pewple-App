@@ -1,0 +1,30 @@
+.friend-image > img {
+  width: 35px;
+  height: 35px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 50px;
+}
+.friendsProfile {
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid white;
+
+  padding-bottom: 5px;
+}
+
+.friends_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.friends_name {
+  font-size: 12px;
+}
+
+.friends_message {
+  font-size: 10px;
+}

@@ -1,0 +1,85 @@
+.comment_container {
+  border: 0.5px solid #cecece;
+  box-sizing: border-box;
+  border-radius: 15px;
+  height: fit-content;
+  width: 90%;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+}
+
+.comment_user {
+  display: flex;
+}
+
+.comment_userImage {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+}
+
+.comment_userImage > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.comment_userFullName {
+  font-size: 14px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  line-height: 18px;
+}
+.comment_userName {
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+.comment_description {
+  align-self: center;
+  width: 85%;
+  margin-top: 20px;
+}
+
+.comment_description > p {
+  height: fit-content;
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  word-spacing: 2px;
+  width: 100%;
+  line-height: 20px;
+  line-break: strict;
+}
+
+.comment_options {
+  display: flex;
+  width: 85%;
+  align-self: center;
+}
+.comment_option_section {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.comment_option_section > img {
+  width: 13.5px;
+  margin-right: 8px;
+}
+
+.comment_option_section > p {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  color: #6d6d6d;
+}
