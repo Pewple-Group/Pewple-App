@@ -1,13 +1,14 @@
 import React from "react";
 import FriendProfile from "./FriendProfile";
-import "./RecentContainer.css";
+import "./SecondContainer.css";
 import ProfilePicture from "../assets/Dhruval.jpeg";
-function RecentContainer() {
+import PradhumanImage from "../assets/profile.jpg";
+function SecondContainer({ title, isRecent, isSuggestion }) {
   return (
     <div className="recent">
       <div className="recent-glass">
         <div className="recent_title">
-          <p>Recent</p>
+          <p>{title}</p>
         </div>
 
         <div className="FriendsList">
@@ -15,16 +16,13 @@ function RecentContainer() {
             name="Dhruval Patel"
             message="How, are you Bro?"
             friendsImage={ProfilePicture}
+            isRecent={true}
           />
           <FriendProfile
-            name="Dhruval Patel"
+            name="Pradhuman Patel"
             message="How, are you Bro?"
-            friendsImage={ProfilePicture}
-          />
-          <FriendProfile
-            name="Dhruval Patel"
-            message="How, are you Bro?"
-            friendsImage={ProfilePicture}
+            friendsImage={PradhumanImage}
+            isRecent={true}
           />
         </div>
       </div>
@@ -32,4 +30,4 @@ function RecentContainer() {
   );
 }
 
-export default RecentContainer;
+export default SecondContainer;

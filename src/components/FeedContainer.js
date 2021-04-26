@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ProfilePicture from "../assets/Dhruval.jpeg";
 import "./FeedContainer.css";
-import DropDown from "../assets/Dropdown.svg";
+
 import PublicIcon from "../assets/public.svg";
 import EmojiIcon from "../assets/emoji.svg";
 import GalleryIcon from "../assets/photo.svg";
 import TextareaAutosize from "react-textarea-autosize";
 import PostContainer from "./PostContainer";
-
+import PradhumanImage from "../assets/profile.jpg";
+import FriendsLogo from "../assets/friends.svg";
+import "semantic-ui-css/semantic.min.css";
+import { Dropdown } from "semantic-ui-react";
 function FeedContainer() {
   const [postInfo, setPostInfo] = useState("");
+  let dropdown = useRef("");
+  const viewerOption = [
+    {
+      text: "Public",
+      value: "Public",
+      image: PublicIcon,
+    },
+    {
+      text: "Friends",
+      value: "Friends",
+      image: FriendsLogo,
+    },
+  ];
 
   return (
     <div className="FeedContainer">
@@ -25,8 +41,14 @@ function FeedContainer() {
               value={postInfo}
             />
             <div className="viewer-dropDown">
-              <img src={PublicIcon} alt="" className="ViewersIcon" />
-              <img src={DropDown} alt="" />
+              {/* <img src={PublicIcon} alt="" className="ViewersIcon" />
+              <img src={DropDown} alt="" /> */}
+
+              <Dropdown
+                ref={dropdown}
+                options={viewerOption}
+                defaultValue={viewerOption[0].value}
+              />
             </div>
           </div>
 
@@ -43,10 +65,16 @@ function FeedContainer() {
       </div>
 
       <div className="feed">
-        <PostContainer />
-        <PostContainer />
-        <PostContainer />
-        <PostContainer />
+        <PostContainer
+          userName="Dhruval Patel"
+          userId="pd_gando"
+          userImage={ProfilePicture}
+        />
+        <PostContainer
+          userName="Pradhuman Patel"
+          userId="pd_gando_2"
+          userImage={PradhumanImage}
+        />
       </div>
     </div>
   );

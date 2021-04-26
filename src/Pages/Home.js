@@ -1,7 +1,8 @@
 import React from "react";
 import FeedContainer from "../components/FeedContainer";
 import NavBar from "../components/NavBar";
-import RecentContainer from "../components/RecentContainer";
+import SecondContainer from "../components/SecondContainer";
+
 import Sidebar from "../components/Sidebar";
 import "./Home.css";
 function Home() {
@@ -9,11 +10,11 @@ function Home() {
     <div className="home">
       <Sidebar />
       <div className="main-container">
-        <NavBar />
+        <NavBar title="Home" />
 
         <div className="components-container">
           <FeedContainer />
-          <RecentContainer />
+          <SecondContainer title="Recent" />
         </div>
       </div>
     </div>

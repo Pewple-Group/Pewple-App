@@ -33,10 +33,11 @@
   line-height: 18px;
 }
 .comment_userName {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 13px;
   font-weight: 400;
-  margin-top: 3px;
+  margin-top: -10px;
+  font-family: "Roboto", sans-serif;
 }
 
 .comment_description {
@@ -63,6 +64,7 @@
   display: flex;
   width: 85%;
   align-self: center;
+  margin-top: 20px;
 }
 .comment_option_section {
   display: flex;

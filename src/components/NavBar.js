@@ -1,10 +1,13 @@
 import React from "react";
 import MessengerLogo from "../assets/send.svg";
 import "./NavBar.css";
-function NavBar() {
+function NavBar({ title }) {
   return (
     <div className="navbar">
-      <p className="navbar-title">Home</p>
+      <div className="navbar_title">
+        <p>{title}</p>
+      </div>
+
       <div className="navbar-searchContainer">
         <input type="text" placeholder="Search..." />
       </div>

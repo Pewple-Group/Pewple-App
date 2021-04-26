@@ -1,0 +1,266 @@
+.Teamtodolist {
+  width: 290px;
+  height: 95%;
+  margin-left: 15px;
+  margin-right: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.Todo {
+  width: 100%;
+  min-width: 252px;
+  height: 383px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 4.68px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  backdrop-filter: blur(28.08px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 15px;
+
+  border: 1px solid #fefefe;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  outline: none;
+}
+
+.Todo::-webkit-scrollbar {
+  display: none;
+}
+
+.Todo-title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item-container {
+  overflow-y: scroll;
+}
+
+.todo-item-container::-webkit-scrollbar {
+  display: none;
+}
+
+.todoList-Title {
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+
+  margin-top: 20px !important;
+  margin-left: 10px;
+}
+
+.add-todo-btn > img {
+  width: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.add-todo-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  position: relative;
+}
+.add-todo-btn .addToDobtnTxt {
+  visibility: hidden;
+}
+
+.addToDobtnTxt {
+  position: absolute;
+  top: 25px;
+  width: 50px;
+  left: -15px;
+  font-size: 11px !important;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.add-todo-btn:hover .addToDobtnTxt {
+  visibility: visible;
+}
+.add-todo-btn > p {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+
+  text-align: center;
+
+  color: #000000;
+}
+.todo-delete {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.todo-delete > p {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+
+  text-align: center;
+
+  color: red;
+}
+.todo-item {
+  width: 100%;
+  height: fit-content;
+  border-top: 1px solid #fefefe;
+  margin-top: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.todo-item > p {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.todo-btn {
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+}
+
+.todo-delete {
+  position: relative;
+}
+.todo-delete > img {
+  width: 20px;
+  cursor: pointer;
+}
+
+.deleteToDobtnTxt {
+  position: absolute;
+  top: 25px;
+  width: 50px;
+  background-color: white;
+  left: -15px;
+  font-size: 11px !important;
+  height: 15px;
+  color: #000000 !important;
+  border-radius: 5px;
+}
+
+.todo-delete .deleteToDobtnTxt {
+  visibility: hidden;
+}
+
+.todo-delete:hover .deleteToDobtnTxt {
+  visibility: visible;
+}
+
+.cancel_btn {
+  font-size: 12px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
+  color: red !important;
+}
+
+.cancel_btn:hover {
+  text-decoration: underline;
+}
+
+.addNewTodo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100px;
+  height: fit-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.addNewTodo > textarea {
+  resize: none;
+
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  outline: none;
+}
+
+.addNewTodo_btn {
+  align-self: flex-end;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.addNewTodo_btn > button {
+  background-color: #72bbff;
+  border: none;
+  outline: none;
+  font-size: 12px !important;
+  width: 50px;
+  height: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.deletetodo-item {
+  width: 100%;
+  height: fit-content;
+  border-top: 1px solid #fefefe;
+  margin-top: 10px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  min-height: 50px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.deletetodo-item > input {
+  align-self: flex-start;
+
+  margin-bottom: 5px;
+}
+
+.delete__todo__btn {
+  width: 100% !important;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
+
+.delete__todo__btn > button {
+  align-self: flex-end;
+  background-color: red;
+  border: none;
+  font-size: 12px;
+  width: 50px;
+  height: 22px;
+  border-radius: 10px;
+  color: black;
+  font-weight: 500;
+  margin-right: 10px;
+  cursor: pointer;
+}

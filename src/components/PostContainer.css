@@ -29,10 +29,11 @@
   line-height: 18px;
 }
 .post_userName {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 13px;
   font-weight: 400;
-  margin-top: 3px;
+  margin-top: -10px;
+  font-family: "Roboto", sans-serif;
 }
 
 .post_description {
@@ -86,4 +87,133 @@
   margin-top: 20px;
   display: flex;
   align-items: center;
+}
+
+.commentDialog_post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  padding: 10px;
+
+  border-bottom: 1px solid lightgray;
+}
+.dialog_post_user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dialog_post_user_image {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.dialog_post_user_image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.commentDialog_post_user_info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.commentDialog_post_userFullname {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.commentDialog_post_userName {
+  font-size: 12px;
+  line-height: 20px;
+  text-decoration: none solid rgb(91, 112, 131);
+  white-space: nowrap;
+  font-weight: 500;
+  word-spacing: 0px;
+  margin-top: -13px !important;
+
+  color: gray;
+}
+
+.commentDialog_post_description {
+  width: 80%;
+
+  align-self: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.commentDialog_post_description > pre {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.commentDialog__comment {
+  display: flex;
+  align-items: flex-start;
+  height: 200px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.commentDialog_currentUserImage {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.commentDialog_currentUserImage > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.commentDialog_commentInput {
+  width: 80%;
+  height: 90%;
+  /* overflow-y: scroll; */
+}
+
+.commentDialog_commentInput::-webkit-scrollbar {
+  width: 5px;
+}
+
+.commentDialog_commentInput > textarea {
+  border: none !important;
+  outline: none;
+  margin-top: 15px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  font-size: 15px !important;
+  width: 100%;
+  resize: none;
+}
+
+.commentDialog_commentOptions {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.commentDialog_options_container > img {
+  margin-left: 10px;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+}
+
+.commentDialog_commentReplybtn > button {
+  width: 75px;
+  height: 27px;
+  background: #72bbff;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }

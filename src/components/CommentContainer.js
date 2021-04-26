@@ -28,11 +28,6 @@ function CommentContainer() {
 
       <div className="comment_options">
         <div className="comment_option_section">
-          <img src={CommentIcon} alt="" />
-          <p>23</p>
-        </div>
-
-        <div className="comment_option_section">
           <img src={HeartOneIcon} alt="" />
           <p>23</p>
         </div>

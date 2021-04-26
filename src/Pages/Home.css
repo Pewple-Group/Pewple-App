@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-x: scroll;
 }
 .main-container {
   width: 75%;

@@ -1,0 +1,40 @@
+.chat-message {
+  margin: 10px;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  min-width: 250px;
+}
+
+.chatMessage_userImage {
+  margin-right: 9px;
+  margin-top: 5px;
+  align-self: flex-start;
+}
+
+.chatMessage_userImage > img {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.message_container {
+  background-color: #fff;
+
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  height: fit-content;
+  margin-right: 10px;
+}
+
+.message_container > p {
+  margin-top: -2px;
+  width: 100%;
+  word-break: break-all;
+}

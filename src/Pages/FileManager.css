@@ -6,3 +6,35 @@
   justify-content: center;
   align-items: center;
 }
+
+.Filemanager-component {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.addFile {
+  margin-top: 10px;
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addFile > button {
+  align-self: flex-end;
+  margin-right: 10px;
+  height: 30px;
+  font-size: 13px;
+  border: none;
+  width: 65px;
+  border-radius: 5px;
+  outline: none;
+  background-color: #4f9ce4;
+  color: black;
+  cursor: pointer;
+}

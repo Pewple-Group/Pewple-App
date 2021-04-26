@@ -4,7 +4,7 @@
   border-radius: 15px;
 
   width: 60%;
-  height: 90%;
+  height: 95%;
   max-height: 95%;
   overflow-y: scroll;
   margin-left: 20px;
@@ -78,6 +78,28 @@
 }
 .viewer-dropDown > img {
   width: 20px;
+}
+.dropdown {
+  display: flex !important;
+  align-items: center;
+}
+
+.divider {
+  display: flex !important;
+  align-items: center;
+}
+
+.divider > img {
+  width: 20px !important;
+}
+
+.item {
+  display: flex !important;
+  align-items: center;
+}
+
+.item > img {
+  width: 20px !important;
 }
 
 .createPostOptions {

@@ -1,20 +1,19 @@
 .navbar {
-  height: 50px;
+  height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding-bottom: 10px;
+
+  padding-bottom: 5px;
+
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.8);
 }
 
-.navbar-title {
+.navbar_title {
   margin-left: 30px;
   font-weight: 500;
   font-size: 20px;
-  line-height: 23px;
-  text-align: center;
+
   font-family: "Raleway", sans-serif;
   color: #000000;
 }
@@ -43,11 +42,12 @@
 .navbar-messenger-btn {
   display: flex;
   align-items: center;
-  width: 115px;
+  width: 105px;
   margin-right: 25px;
   justify-content: space-between;
+  cursor: pointer;
 }
-.messanger-logo {
+.messenger-logo {
   width: 25px;
   height: 25px;
 }

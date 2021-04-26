@@ -1,0 +1,237 @@
+.team-list {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+
+  width: 60%;
+  height: 95%;
+
+  overflow-y: scroll;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.team-list::-webkit-scrollbar {
+  display: none;
+}
+
+.teamlist_navbar {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: 5px;
+
+  padding: 20px;
+
+  border-bottom: 1px solid lightgray !important;
+}
+.teamlist_searchbar {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  margin-right: 40px;
+  width: 50%;
+}
+.teamlist_searchbar > input {
+  width: 100%;
+  height: 30px;
+  background: #ffffff;
+  border: 1px solid #cdc8c8;
+  backdrop-filter: blur(12px);
+  /* Note: backdrop-filter has minimal browser support */
+  font-size: 13px;
+  border-radius: 50px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.create_new_team_btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.create_new_team_btn > img {
+  width: 15px;
+  margin-right: 5px;
+}
+.create_new_team_btn > p {
+  color: #2196f3;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.newTeam_container {
+  padding: 20px;
+  margin-top: -30px;
+}
+
+.newTeam_container::-webkit-scrollbar {
+  display: none !important;
+}
+
+.MuiDialogContent-root::-webkit-scrollbar {
+  display: none;
+}
+
+.newteam_detail {
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+}
+.newTeam_nameInput {
+  width: 50%;
+  margin-right: 15px;
+}
+.newTeam_nameInput > p {
+  margin-bottom: 5px;
+}
+
+.newTeam_nameInput > input {
+  width: 100%;
+  height: 33px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 13px;
+}
+
+.newTeam_projectNameInput {
+  width: 50%;
+  margin-right: 15px;
+}
+
+.newTeam_projectNameInput > input {
+  width: 100%;
+  height: 33px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 13px;
+}
+
+.newTeam_projectNameInput > p {
+  margin-bottom: 5px;
+}
+
+.newTeam_selectMember {
+  width: 100%;
+  margin-top: 20px !important;
+}
+
+.member_container {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.member_container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.newTeamMember_container {
+  padding: 10px !important;
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.memberDetail {
+  display: flex;
+  align-items: center;
+}
+
+.member_image {
+  width: 40px;
+  height: 40px;
+}
+
+.member_image > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.member_info {
+  margin-left: 15px;
+}
+
+.member_name {
+  margin-bottom: 2px;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+}
+
+.member_userName {
+  font-size: 11px;
+  font-family: "Roboto", sans-serif;
+  line-height: 14px;
+  color: gray;
+}
+
+.member_selectedMark > input {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+}
+
+.Select_memberTitle {
+  margin-top: 10px !important;
+  margin-left: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.searchMember {
+  margin: auto;
+  margin-left: 20px;
+  width: 90%;
+  height: 28px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-self: center;
+  font-size: 13px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+
+.createTeambtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.createbtn {
+  width: 75px;
+  height: 33px;
+  background: #80bcf5;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.cancelbtn {
+  width: 75px;
+  height: 33px;
+  background: #f75438;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}

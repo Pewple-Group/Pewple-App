@@ -7,7 +7,9 @@ import FriendsPage from "./Pages/FriendsPage";
 import FileManager from "./Pages/FileManager";
 import TeamPage from "./Pages/TeamPage";
 import Teams from "./Pages/Teams";
-
+import ProfilePage from "./Pages/ProfilePage";
+import Messenger from "./Pages/Messenger";
+// https://pewple-app.firebaseapp.com/__/auth/handler
 function App() {
   return (
     <Router>
@@ -31,6 +33,12 @@ function App() {
           </Route>
           <Route path="/filemanager">
             <FileManager />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+          <Route path="/messenger">
+            <Messenger />
           </Route>
           <Route path="/">
             <Home />

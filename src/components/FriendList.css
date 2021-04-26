@@ -1,0 +1,118 @@
+.friend-list::-webkit-scrollbar {
+  display: none;
+}
+
+.friend-list {
+  width: 65%;
+
+  height: 95%;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  margin-left: 20px;
+  overflow-y: scroll;
+}
+
+.friendlist_navbar {
+  display: flex;
+  width: 100%;
+  margin-top: 5px;
+  align-items: center;
+  height: 51px;
+  padding-left: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 0.5px solid #dfdfdf;
+}
+.friendlist_navbarTitle {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.friendlist_navbarTitle > p {
+  width: 95px;
+
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #000000;
+}
+.friendlist_searchBar {
+  width: 60%;
+  align-self: center;
+  margin-left: 20px;
+}
+.friendlist_searchBar > input {
+  width: 100%;
+  height: 33px;
+  border-radius: 15px;
+  padding-left: 10px;
+  border: 2px solid lightgray;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 13px;
+  outline: none;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.friendlist-container {
+  padding: 10px;
+}
+
+.friends_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 0.5px solid #dfdfdf;
+}
+
+.friendsContainer_details {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.friendslist_friendsImage {
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+}
+
+.friendslist_friendsImage > img {
+  width: 100%;
+  border-radius: 50%;
+}
+.friendsList_friendsName {
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+.friendslist_friendsUserName {
+  font-size: 11px;
+  color: gray;
+}
+
+.friendContainer_option {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 25px;
+}
+
+.friendContainer_option > img {
+  width: 20px;
+  cursor: pointer;
+}

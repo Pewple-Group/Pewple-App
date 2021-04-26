@@ -1,0 +1,151 @@
+.Team-chatbox {
+  width: 90%;
+  height: 95%;
+
+  background: radial-gradient(
+    8.4% 17.84% at 76.58% 76.19%,
+    rgba(255, 255, 255, 0.49) 0%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+}
+.Chat-Top {
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.Chat-navtitle {
+}
+.Chat-navtitle > p {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.chat-navSearch {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+
+  width: 40%;
+}
+
+.chat-navSearch > input {
+  width: 100%;
+  height: 30px;
+  background: #ffffff;
+  border: 1px solid #cdc8c8;
+  backdrop-filter: blur(12px);
+  /* Note: backdrop-filter has minimal browser support */
+  font-size: 13px;
+  border-radius: 50px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.chat-navAddMember {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.chat-navAddMember > img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.chatMessage-container {
+  flex: 1;
+  width: 100%;
+  margin-top: 10px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatMessage-container::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 0px;
+}
+
+.addMember_title {
+  font-size: 16px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+
+.addNewMember {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.addNewMember::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 0px;
+}
+
+.addNewTeamMember_container {
+  padding: 10px !important;
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.addMemberDetail {
+  display: flex;
+  align-items: center;
+}
+
+.addMember_image {
+  width: 40px;
+  height: 40px;
+}
+
+.addMember_image > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.addMember_info {
+  margin-left: 15px;
+}
+
+.addMember_name {
+  margin-bottom: 2px;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+}
+
+.addMember_userName {
+  font-size: 11px;
+  font-family: "Roboto", sans-serif;
+  line-height: 14px;
+  color: gray;
+}
+
+.addMember_selectedMark > input {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+}

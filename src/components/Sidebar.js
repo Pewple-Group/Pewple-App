@@ -7,7 +7,7 @@ import FriendsLogo from "../assets/friends.svg";
 import TeamLogo from "../assets/people.svg";
 import FilemanagerLogo from "../assets/source.svg";
 import LogOutLogo from "../assets/logout.svg";
-function Sidebar() {
+function Sidebar({ small }) {
   return (
     <div className="sidebar">
       <div className="sidebar_component">
@@ -16,10 +16,12 @@ function Sidebar() {
             <div className="profile-img">
               <img src={ProfilePicture} alt="" />
             </div>
-            <div className="profile-info">
-              <p className="profile-fullname">Patel Dhruval</p>
-              <p className="profile-username">pd06072001@gmail.com</p>
-            </div>
+            {!small && (
+              <div className="profile-info">
+                <p className="profile-fullname">Patel Dhruval</p>
+                <p className="profile-username">pd06072001@gmail.com</p>
+              </div>
+            )}
             <div className="profile-dropdown">
               <img src={DropDown} alt="" />
             </div>
@@ -30,25 +32,25 @@ function Sidebar() {
               <div className="option-img">
                 <img src={HomeLogo} alt="" />
               </div>
-              <p>Home</p>
+              {!small && <p>Home</p>}
             </div>
             <div className="sidebar-option">
               <div className="option-img">
                 <img src={FriendsLogo} alt="" />
               </div>
-              <p>Friends</p>
+              {!small && <p>Friends</p>}
             </div>
             <div className="sidebar-option">
               <div className="option-img">
                 <img src={TeamLogo} alt="" />
               </div>
-              <p>Teams</p>
+              {!small && <p>Teams</p>}
             </div>
             <div className="sidebar-option">
               <div className="option-img">
                 <img src={FilemanagerLogo} alt="" />
               </div>
-              <p>File Manager</p>
+              {!small && <p>File Manager</p>}
             </div>
           </div>
         </div>
@@ -57,7 +59,7 @@ function Sidebar() {
           <div className="logout-img">
             <img src={LogOutLogo} alt="" />
           </div>
-          <p>Log-Out</p>
+          {!small && <p>Log-Out</p>}
         </div>
       </div>
     </div>

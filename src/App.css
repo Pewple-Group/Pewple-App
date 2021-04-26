@@ -11,5 +11,6 @@
     #36d1dc 6%,
     rgba(91, 134, 229, 0.7) 90.26%
   );
-  overflow: hidden;
+
+  overflow-x: scroll;
 }
