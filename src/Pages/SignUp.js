@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { auth } from "../firebase";
 import "./SignUp.css";
 function SignUp() {
   const [firstname, setFirstname] = useState("");
@@ -9,9 +11,26 @@ function SignUp() {
 
   const [profile, setProfile] = useState("");
   const [disable, setDisable] = useState(false);
-
+  const history = useHistory();
   const signUp = (e) => {
+    // stop refresh
     e.preventDefault();
+
+    auth.createUserWithEmailAndPassword(email, password).then((result) => {
+      result.user.updateProfile({
+        id: result.user.uid,
+        displayName: `${firstname} ${lastname}`,
+        email: email,
+      });
+
+      result.user
+        .sendEmailVerification()
+        .then(() => {
+          alert("Please verify your account");
+          history.push("/login");
+        })
+        .catch((error) => alert(error.message));
+    });
   };
 
   return (
