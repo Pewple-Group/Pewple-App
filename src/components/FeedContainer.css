@@ -25,6 +25,7 @@
   margin-bottom: 10px;
   padding-bottom: 20px;
   border-bottom: 1px solid lightgray;
+  position: relative;
 }
 
 .userProfile {
@@ -135,4 +136,10 @@
 .feed {
   align-self: center;
   width: 90%;
+}
+
+.emoji-picker-react {
+  position: absolute !important;
+  top: 70px;
+  left: 90px;
 }

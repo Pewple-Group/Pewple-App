@@ -11,8 +11,12 @@ import PradhumanImage from "../assets/profile.jpg";
 import FriendsLogo from "../assets/friends.svg";
 import "semantic-ui-css/semantic.min.css";
 import { Dropdown } from "semantic-ui-react";
+import db, { auth } from "../firebase";
+import Picker from "emoji-picker-react";
+import { EmojiObjects } from "@material-ui/icons";
 function FeedContainer() {
   const [postInfo, setPostInfo] = useState("");
+  const [emojiSwitch, setEmojiSwitch] = useState(false);
   let dropdown = useRef("");
   const viewerOption = [
     {
@@ -27,11 +31,23 @@ function FeedContainer() {
     },
   ];
 
+  const post = () => {
+    const postData = {
+      description: postInfo,
+      user: auth.currentUser.email,
+    };
+    db.collection("posts").add(postData);
+    setPostInfo("");
+  };
+
+  const onEmojiClick = (event, emojiObject) => {
+    setPostInfo(postInfo + emojiObject.emoji);
+  };
   return (
     <div className="FeedContainer">
       <div className="createPostContainer">
         <div className="userProfile">
-          <img src={ProfilePicture} alt="" />
+          <img src={auth.currentUser.photoURL} alt="" />
         </div>
         <div className="postInputContainer">
           <div className="InputContainer">
@@ -39,6 +55,7 @@ function FeedContainer() {
               placeholder="what's Happening? "
               onChange={(e) => setPostInfo(e.target.value)}
               value={postInfo}
+              required
             />
             <div className="viewer-dropDown">
               {/* <img src={PublicIcon} alt="" className="ViewersIcon" />
@@ -55,13 +72,19 @@ function FeedContainer() {
           <div className="createPostOptions">
             <div className="selectOptions">
               <img src={GalleryIcon} alt="" />
-              <img src={EmojiIcon} alt="" />
+              <img
+                src={EmojiIcon}
+                alt=""
+                onClick={(e) => setEmojiSwitch(!emojiSwitch)}
+              />
             </div>
             <div className="post-btn">
-              <button>Post</button>
+              <button onClick={post}>Post</button>
             </div>
           </div>
         </div>
+
+        {emojiSwitch && <Picker onEmojiClick={onEmojiClick} />}
       </div>
 
       <div className="feed">

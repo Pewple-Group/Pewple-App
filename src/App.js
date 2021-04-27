@@ -15,9 +15,6 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
           <Route path="/signup">
             <SignUp />
           </Route>
@@ -27,7 +24,7 @@ function App() {
           <Route path="/teams">
             <Teams />
           </Route>
-          login
+
           <Route path="/team">
             <TeamPage />
           </Route>
@@ -40,8 +37,11 @@ function App() {
           <Route path="/messenger">
             <Messenger />
           </Route>
-          <Route path="/">
+          <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/">
+            <Login />
           </Route>
         </Switch>
       </div>

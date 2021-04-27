@@ -221,23 +221,23 @@
     #36d1dc 20.55%,
     rgba(60, 194, 223, 0.2) 90.62%
   );
+  border: 00.5 px solid white;
   border-radius: 60px;
 }
 
-.login-create > p {
-  width: 194px;
-  height: 20px;
+.login-link > p {
+  width: 164px;
 
-  font-family: "Raleway";
+  height: 39px;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 18px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 40px;
   text-align: center;
-
+  margin-bottom: 50px;
   color: #000000;
 }
-
 .or-statement {
   margin-top: 20px;
 }

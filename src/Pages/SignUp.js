@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { auth } from "../firebase";
+import { Link, useHistory } from "react-router-dom";
+import db, { auth } from "../firebase";
 import "./SignUp.css";
 function SignUp() {
   const [firstname, setFirstname] = useState("");
@@ -30,6 +30,10 @@ function SignUp() {
           history.push("/login");
         })
         .catch((error) => alert(error.message));
+
+      const newUser = { fullname: `${firstname} ${lastname}`, email: email };
+
+      db.collection("users").doc(result.user.uid).set(newUser);
     });
   };
 
@@ -94,13 +98,16 @@ function SignUp() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="signUp-button">
+            <div className="signUp-button" onClick={signUp}>
               <p>Sign-Up</p>
             </div>
           </form>
 
           <p className="Already-Statement">
-            Already have a Account ? <span> Login </span>
+            Already have a Account ?
+            <Link to="/login">
+              <span> Login </span>
+            </Link>
           </p>
         </div>
       </div>
