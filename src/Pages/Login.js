@@ -4,10 +4,12 @@ import GoogleLogo from "../assets/GoogleLogo.png";
 import GithubLogo from "../assets/githubLogo.png";
 import { Link, useHistory } from "react-router-dom";
 import db, { auth, GithubProvider, GoogleProvider } from "../firebase";
-function Login() {
+import { useStateValue } from "../StateProvider";
+function Login({ setSignUp, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+
+  const [{ user }, dispatch] = useStateValue();
   const login = (e) => {
     e.preventDefault();
 
@@ -15,7 +17,17 @@ function Login() {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         if (result.user.emailVerified) {
-          history.push("/home");
+          dispatch({
+            type: "SET_USER",
+            user: result.user,
+          });
+          const newUser = {
+            fullname: result.user.displayName,
+            photo: result.user.photoURL,
+            email: email,
+          };
+          setUser(newUser);
+          localStorage.setItem("user", JSON.stringify(newUser));
         } else {
           alert("please verify your account");
         }
@@ -31,9 +43,9 @@ function Login() {
           email: result.user.email,
           photo: result.user.photoURL,
         };
+        setUser(newUser);
         db.collection("users").doc(result.user.uid).set(newUser);
-
-        history.push("/home");
+        localStorage.setItem("user", JSON.stringify(newUser));
       })
       .catch();
   };
@@ -91,10 +103,8 @@ function Login() {
               ---------- &nbsp; <span>OR</span> &nbsp;----------
             </p>
           </div>
-          <div className="login-create">
-            <Link to="/signup" className="login-link">
-              <p>Create a Pewple Account</p>
-            </Link>
+          <div className="login-create" onClick={() => setSignUp(true)}>
+            <p>Create a Pewple Account</p>
           </div>
         </div>
       </div>

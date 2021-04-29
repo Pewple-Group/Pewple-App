@@ -19,6 +19,7 @@
 .createPostContainer {
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   height: fit-content;
   margin-top: 20px;
@@ -142,4 +143,33 @@
   position: absolute !important;
   top: 70px;
   left: 90px;
+}
+
+.file_input_btn {
+  background-color: rgb(72, 225, 236);
+  width: 76px;
+  font-size: 12px;
+}
+.display__image {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  grid-template-columns: repeat(2, 180px);
+  grid-template-rows: 180px;
+  grid-gap: 10px;
+  margin-top: 30px;
+}
+.image__content {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.image__content > img {
+  width: 100% !important;
+  height: 100% !important;
 }

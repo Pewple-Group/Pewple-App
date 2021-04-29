@@ -9,21 +9,22 @@ import TeamLogo from "../assets/people.svg";
 import FilemanagerLogo from "../assets/source.svg";
 import LogOutLogo from "../assets/logout.svg";
 import { auth } from "../firebase";
-function Sidebar({ small }) {
+import { useHistory } from "react-router-dom";
+
+function Sidebar({ small, signOut, user }) {
+  const history = useHistory();
   return (
     <div className="sidebar">
       <div className="sidebar_component">
         <div className="sidebar-container">
           <div className="sidebar-UserProfile">
             <div className="profile-img">
-              <img src={auth.currentUser.photoURL} alt="" />
+              <img src={user?.photo} alt="" />
             </div>
             {!small && (
               <div className="profile-info">
-                <p className="profile-fullname">
-                  {auth.currentUser.displayName}
-                </p>
-                <p className="profile-username">{auth.currentUser.email}</p>
+                <p className="profile-fullname">{user?.fullname}</p>
+                <p className="profile-username">{user?.email}</p>
               </div>
             )}
             <div className="profile-dropdown">
@@ -67,7 +68,13 @@ function Sidebar({ small }) {
           </div>
         </div>
 
-        <div className="sidebar-logout">
+        <div
+          className="sidebar-logout"
+          onClick={() => {
+            history.push("/");
+            signOut();
+          }}
+        >
           <div className="logout-img">
             <img src={LogOutLogo} alt="" />
           </div>

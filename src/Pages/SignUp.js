@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import db, { auth } from "../firebase";
 import "./SignUp.css";
-function SignUp() {
+function SignUp({ setSignUp }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
@@ -16,25 +16,29 @@ function SignUp() {
     // stop refresh
     e.preventDefault();
 
-    auth.createUserWithEmailAndPassword(email, password).then((result) => {
-      result.user.updateProfile({
-        id: result.user.uid,
-        displayName: `${firstname} ${lastname}`,
-        email: email,
-      });
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        result.user.updateProfile({
+          id: result.user.uid,
+          displayName: `${firstname} ${lastname}`,
+          email: email,
+        });
 
-      result.user
-        .sendEmailVerification()
-        .then(() => {
-          alert("Please verify your account");
-          history.push("/login");
-        })
-        .catch((error) => alert(error.message));
+        result.user
+          .sendEmailVerification()
+          .then(() => {
+            alert("Please verify your account");
+            history.push("/login");
+          })
+          .catch((error) => alert(error.message));
 
-      const newUser = { fullname: `${firstname} ${lastname}`, email: email };
+        const newUser = { fullname: `${firstname} ${lastname}`, email: email };
 
-      db.collection("users").doc(result.user.uid).set(newUser);
-    });
+        db.collection("users").doc(result.user.uid).set(newUser);
+        setSignUp(false);
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -105,9 +109,7 @@ function SignUp() {
 
           <p className="Already-Statement">
             Already have a Account ?
-            <Link to="/login">
-              <span> Login </span>
-            </Link>
+            <span onClick={(e) => setSignUp(false)}> Login </span>
           </p>
         </div>
       </div>

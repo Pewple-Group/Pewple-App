@@ -5,15 +5,15 @@ import SecondContainer from "../components/SecondContainer";
 
 import Sidebar from "../components/Sidebar";
 import "./Home.css";
-function Home() {
+function Home({ signOut, user }) {
   return (
     <div className="home">
-      <Sidebar />
+      <Sidebar signOut={signOut} user={user} />
       <div className="main-container">
         <NavBar title="Home" />
 
         <div className="components-container">
-          <FeedContainer />
+          <FeedContainer user={user} />
           <SecondContainer title="Recent" />
         </div>
       </div>

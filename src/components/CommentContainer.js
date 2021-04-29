@@ -15,7 +15,6 @@ function CommentContainer() {
         </div>
         <div className="comment_userInfo">
           <p className="comment_userFullName">Dhruval Patel</p>
-          <p className="comment_userName">@pd_06_07_2001</p>
         </div>
       </div>
 

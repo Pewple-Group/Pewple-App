@@ -9,43 +9,61 @@ import TeamPage from "./Pages/TeamPage";
 import Teams from "./Pages/Teams";
 import ProfilePage from "./Pages/ProfilePage";
 import Messenger from "./Pages/Messenger";
+import { useState } from "react";
+import { auth } from "./firebase";
 // https://pewple-app.firebaseapp.com/__/auth/handler
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/friends">
-            <FriendsPage />
-          </Route>
-          <Route path="/teams">
-            <Teams />
-          </Route>
+  const [signUp, setSignUp] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
-          <Route path="/team">
-            <TeamPage />
-          </Route>
-          <Route path="/filemanager">
-            <FileManager />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-          <Route path="/messenger">
-            <Messenger />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        setUser(null);
+        localStorage.removeItem("user");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  console.log(user);
+  return (
+    <div className="App">
+      <Router>
+        {!user && signUp ? (
+          <SignUp setSignUp={setSignUp} />
+        ) : !user && !signUp ? (
+          <Login setUser={setUser} setSignUp={setSignUp} />
+        ) : (
+          <Switch>
+            <Route path="/friends">
+              <FriendsPage />
+            </Route>
+            <Route path="/teams">
+              <Teams />
+            </Route>
+
+            <Route path="/team">
+              <TeamPage />
+            </Route>
+            <Route path="/filemanager">
+              <FileManager />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage />
+            </Route>
+            <Route path="/messenger">
+              <Messenger />
+            </Route>
+            <Route path="/">
+              <Home signOut={signOut} user={user} />
+            </Route>
+          </Switch>
+        )}
+      </Router>
+    </div>
   );
 }
 
