@@ -28,7 +28,6 @@ function App() {
       });
   };
 
-  console.log(user);
   return (
     <div className="App">
       <Router>
@@ -39,23 +38,29 @@ function App() {
         ) : (
           <Switch>
             <Route path="/friends">
-              <FriendsPage />
+              <FriendsPage signOut={signOut} user={user} />
             </Route>
             <Route path="/teams">
-              <Teams />
+              <Teams signOut={signOut} user={user} />
             </Route>
 
-            <Route path="/team">
-              <TeamPage />
+            <Route path={`/team:teamId`}>
+              <TeamPage signOut={signOut} user={user} />
             </Route>
-            <Route path="/filemanager">
-              <FileManager />
+            <Route path="/file:userId">
+              <FileManager signOut={signOut} user={user} />
             </Route>
-            <Route path="/profile">
-              <ProfilePage />
+            <Route path="/profile:userId">
+              <ProfilePage signOut={signOut} user={user} />
+            </Route>
+            <Route path="/post:post">
+              <Messenger user={user} />
             </Route>
             <Route path="/messenger">
-              <Messenger />
+              <Messenger user={user} />
+            </Route>
+            <Route path="/messenger:userId">
+              <Messenger user={user} />
             </Route>
             <Route path="/">
               <Home signOut={signOut} user={user} />

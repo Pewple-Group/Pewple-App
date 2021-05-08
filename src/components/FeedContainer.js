@@ -1,55 +1,44 @@
 import React, { useEffect, useRef, useState } from "react";
-import ProfilePicture from "../assets/Dhruval.jpeg";
+
 import "./FeedContainer.css";
 
-import PublicIcon from "../assets/public.svg";
 import EmojiIcon from "../assets/emoji.svg";
 import GalleryIcon from "../assets/photo.svg";
 import TextareaAutosize from "react-textarea-autosize";
 import PostContainer from "./PostContainer";
-import PradhumanImage from "../assets/profile.jpg";
-import FriendsLogo from "../assets/friends.svg";
+
 import "semantic-ui-css/semantic.min.css";
-import { Dropdown } from "semantic-ui-react";
+
 import db, { auth, storage } from "../firebase";
 import Picker from "emoji-picker-react";
 import firebase from "firebase";
-import { EmojiObjects } from "@material-ui/icons";
+
 function FeedContainer({ user }) {
   const [postInfo, setPostInfo] = useState("");
   const [videoUrl, setVideoUrl] = useState([]);
   const [imageUrl, setImageUrl] = useState([]);
   const [postDetail, setPostDetail] = useState([]);
   const [emojiSwitch, setEmojiSwitch] = useState(false);
-  let dropdown = useRef("");
-  const viewerOption = [
-    {
-      text: "Public",
-      value: "Public",
-      image: PublicIcon,
-    },
-    {
-      text: "Friends",
-      value: "Friends",
-      image: FriendsLogo,
-    },
-  ];
+  const [activeUser, setActiveUser] = useState({});
+  const inputFile = useRef("");
 
-  const post = () => {
+  const post = async () => {
     if (postInfo.length > 0) {
       let lines = postInfo.split(/\n/);
 
       const postData = {
         description: lines,
-        user: user.fullname,
-        pictureProfile: user.photo,
-        userEmail: user.email,
+
+        userId: user.id,
+
         videos: videoUrl.length > 0 ? videoUrl : [],
         images: imageUrl.length > 0 ? imageUrl : [],
         timestamp: firebase.firestore.Timestamp.now(),
       };
       db.collection("posts").add(postData);
       setPostInfo("");
+      setImageUrl([]);
+      setVideoUrl([]);
     } else {
       alert("please fill in the blank");
     }
@@ -64,8 +53,15 @@ function FeedContainer({ user }) {
           setPostDetail(snapshot.docs);
         });
     };
+    const getCurrentUser = async () => {
+      const data = await db
+        .collection("users")
+        .doc(user.id)
+        .onSnapshot((snapshot) => setActiveUser(snapshot.data()));
+    };
 
     getPost();
+    getCurrentUser();
   }, []);
 
   const onEmojiClick = (event, emojiObject) => {
@@ -74,13 +70,15 @@ function FeedContainer({ user }) {
 
   const onFileSelect = async (file) => {
     const selectFile = file.target.files[0];
+    const fileName = Date.now();
+    console.log(fileName);
     if (
       selectFile.type === "image/png" ||
       selectFile.type === "image/jpeg" ||
       selectFile.type === "image/gif"
     ) {
       const storageRef = storage.ref();
-      const fileRef = storageRef.child(selectFile.name);
+      const fileRef = storageRef.child(fileName.toString());
       await fileRef.put(selectFile);
       const fileLink = await fileRef.getDownloadURL();
       setImageUrl((images) => [...images, fileLink]);
@@ -98,52 +96,51 @@ function FeedContainer({ user }) {
     }
   };
 
+  const handleClick = (event) => {
+    inputFile.current.click();
+  };
+
   return (
     <div className="FeedContainer">
       <div className="createPostContainer">
-        <div className="userProfile">
-          <img src={user?.photo} alt="" />
-        </div>
-        <div className="postInputContainer">
-          <div className="InputContainer">
-            <TextareaAutosize
-              placeholder="what's Happening? "
-              onChange={(e) => setPostInfo(e.target.value)}
-              value={postInfo}
-              required
-            />
-
-            <div className="viewer-dropDown">
-              {/* <img src={PublicIcon} alt="" className="ViewersIcon" />
-              <img src={DropDown} alt="" /> */}
-
-              <Dropdown
-                ref={dropdown}
-                options={viewerOption}
-                defaultValue={viewerOption[0].value}
-              />
-            </div>
+        <div className="createPost__info">
+          <div className="userProfile">
+            <img src={activeUser?.photo} alt="" />
           </div>
-
-          <div className="createPostOptions">
-            <div className="selectOptions">
-              {/* <img src={GalleryIcon} alt="" /> */}
-              <input
-                type="file"
-                className="file_input_btn"
-                accept="image/*, video/*"
-                onChange={(file) => {
-                  onFileSelect(file);
-                }}
-              />
-              <img
-                src={EmojiIcon}
-                alt=""
-                onClick={(e) => setEmojiSwitch(!emojiSwitch)}
+          <div className="postInputContainer">
+            <div className="InputContainer">
+              <TextareaAutosize
+                placeholder="what's Happening? "
+                onChange={(e) => setPostInfo(e.target.value)}
+                value={postInfo}
+                required
               />
             </div>
-            <div className="post-btn">
-              <button onClick={post}>Post</button>
+
+            <div className="createPostOptions">
+              <div className="selectOptions">
+                <img src={GalleryIcon} alt="" onClick={handleClick} />
+                <input
+                  type="file"
+                  className="file_input_btn"
+                  accept="image/*, video/*"
+                  onChange={(file) => {
+                    onFileSelect(file);
+                  }}
+                  style={{
+                    display: "none",
+                  }}
+                  ref={inputFile}
+                />
+                <img
+                  src={EmojiIcon}
+                  alt=""
+                  onClick={(e) => setEmojiSwitch(!emojiSwitch)}
+                />
+              </div>
+              <div className="post-btn">
+                <button onClick={post}>Post</button>
+              </div>
             </div>
           </div>
         </div>
@@ -187,6 +184,8 @@ function FeedContainer({ user }) {
       <div className="feed">
         {postDetail.map((post) => (
           <PostContainer
+            key={post.id}
+            userId={post.data().userId}
             userEmail={post.data().userEmail}
             userImage={post.data().pictureProfile}
             userName={post.data().user}
@@ -195,6 +194,7 @@ function FeedContainer({ user }) {
             postLike={post.data().likes}
             postVideos={post.data().videos}
             postImages={post.data().images}
+            currentUser={user}
           />
         ))}
         {/* <PostContainer userName="Dhruval Patel" userImage={ProfilePicture} />

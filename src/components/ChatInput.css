@@ -9,6 +9,7 @@
   align-self: flex-end;
 
   margin-bottom: 10px;
+  position: relative;
 }
 
 .chatInput_container {
@@ -39,7 +40,7 @@
 }
 
 .chatInput_input {
-  width: 70%;
+  width: 80%;
   min-width: 200px;
   height: 30px;
   margin: 0 15px 0 15px;
@@ -63,4 +64,10 @@
 .chatInput__sendbtn > img {
   width: 22px;
   cursor: pointer;
+}
+
+.chatInput .emoji-picker-react {
+  position: absolute;
+  top: -330px;
+  left: 20px;
 }

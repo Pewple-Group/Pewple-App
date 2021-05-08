@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import db, { auth } from "../firebase";
 import "./SignUp.css";
+import defaultImage from "../assets/defaultUser.png";
 function SignUp({ setSignUp }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -23,6 +24,8 @@ function SignUp({ setSignUp }) {
           id: result.user.uid,
           displayName: `${firstname} ${lastname}`,
           email: email,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/pewple-app.appspot.com/o/defaultUser.png?alt=media&token=b888c545-0c3f-44ce-9a00-9cefbd2d02bf",
         });
 
         result.user
@@ -33,7 +36,15 @@ function SignUp({ setSignUp }) {
           })
           .catch((error) => alert(error.message));
 
-        const newUser = { fullname: `${firstname} ${lastname}`, email: email };
+        const newUser = {
+          fullname: `${firstname} ${lastname}`,
+          email: email,
+          id: result.user.uid,
+          bio: [],
+          profession: "",
+          photo:
+            "https://firebasestorage.googleapis.com/v0/b/pewple-app.appspot.com/o/defaultUser.png?alt=media&token=b888c545-0c3f-44ce-9a00-9cefbd2d02bf",
+        };
 
         db.collection("users").doc(result.user.uid).set(newUser);
         setSignUp(false);

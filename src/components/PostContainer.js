@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./PostContainer.css";
-import ProfilePicture from "../assets/Dhruval.jpeg";
+
 import CommentIcon from "../assets/comment.svg";
 import HeartOneIcon from "../assets/heart.svg";
 import HeartTwoIcon from "../assets/heart_1.svg";
 import ShareIcon from "../assets/share.svg";
-
+import { useHistory } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
-import PradhumanImage from "../assets/profile.jpg";
+
 import TextareaAutosize from "react-textarea-autosize";
-import EmojiIcon from "../assets/emoji.svg";
-import GalleryIcon from "../assets/photo.svg";
+
 import db, { auth } from "../firebase";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Carousel } from "react-bootstrap";
+
+import firebase from "firebase";
+import CommentContainer from "./CommentContainer";
+
 function PostContainer({
   userName,
   userId,
@@ -23,17 +28,21 @@ function PostContainer({
   postImages,
   postVideos,
   postId,
+  currentUser,
 }) {
   const [likesOnPost, setLikesOnPost] = useState({
     likes: [],
   });
+  const [comment, setComment] = useState("");
   const [commentDialog, setCommentDialog] = useState(false);
+  const [commentOnPost, setCommentOnPost] = useState([]);
   const [commentState, setCommentState] = useState({
-    comments: 24,
+    comments: commentOnPost?.length > 0 ? commentOnPost?.length : 0,
   });
+  const [activeUser, setActiveUser] = useState();
 
   const [likeState, setLikeState] = useState({
-    like: likesOnPost?.length,
+    like: likesOnPost?.likes.length > 0 ? likesOnPost?.likes.length : 0,
     likeActive: false,
   });
   const getLikes = async () => {
@@ -41,18 +50,46 @@ function PostContainer({
       .collection("likes")
       .doc(postId)
       .onSnapshot((snapshot) => {
-        setLikesOnPost(snapshot.data());
+        if (snapshot.data() !== undefined) {
+          setLikesOnPost(snapshot.data());
+        }
+
         setLikeState({
-          like:
-            snapshot.data()?.likes?.length > 0
-              ? snapshot.data()?.likes?.length
-              : 0,
-          likeActive: snapshot.data()?.likes.includes(auth.currentUser.email),
+          like: snapshot.data()?.likes?.length
+            ? snapshot.data()?.likes?.length
+            : 0,
+          likeActive: snapshot.data()?.likes.includes(auth.currentUser?.email),
         });
+      });
+  };
+
+  const getComments = async () => {
+    const data = await db
+      .collection("posts")
+      .doc(postId)
+      .collection("Comments")
+      .orderBy("timeStamp", "desc")
+      .onSnapshot((snapshot) => {
+        setCommentOnPost(snapshot.docs);
+
+        setCommentState({
+          comments: snapshot.docs.length,
+        });
+      });
+  };
+
+  const getUser = async () => {
+    const data = await db
+      .collection("users")
+      .doc(userId)
+      .onSnapshot((snapshot) => {
+        setActiveUser(snapshot.data());
       });
   };
   useEffect(() => {
     getLikes();
+    getComments();
+    getUser();
   }, []);
 
   const HandleLike = async () => {
@@ -64,7 +101,7 @@ function PostContainer({
       };
       await db.collection("likes").doc(postId).set(likepayload);
       setLikesOnPost({
-        likes: likepayload?.likes,
+        likes: likepayload.likes,
       });
     } else {
       const likepayload = {
@@ -72,20 +109,35 @@ function PostContainer({
       };
       await db.collection("likes").doc(postId).set(likepayload);
       setLikesOnPost({
-        likes: likepayload?.likes,
+        likes: likepayload.likes,
       });
     }
+  };
 
-    // const likepayload = {
-    //   likes: likesOnPost.likes.includes(auth.currentUser.email)
-    //     ? likesOnPost.likes.filter((_) => {
-    //         return _ != auth.currentUser.email;
-    //       })
-    //     : [...likesOnPost.likes, auth.currentUser.email],
-    // };
-    // db.collection("likes").doc(postId).set(likepayload);
+  const handleComment = async () => {
+    if (comment.length > 0) {
+      let lines = comment.split(/\n/);
+      let payload = {
+        timeStamp: firebase.firestore.Timestamp.now(),
+        comment: lines,
+        userName: currentUser?.fullname,
+        email: currentUser?.email,
+        id: currentUser?.id,
+        photo: currentUser?.photo,
+      };
 
-    // console.log(likeState);
+      db.collection("posts").doc(postId).collection("Comments").add(payload);
+      setComment("");
+      setCommentDialog(false);
+    } else {
+      alert("please Fill up the blank");
+    }
+  };
+  const history = useHistory();
+  const gotoUser = (userId) => {
+    if (userId) {
+      history.push(`/profile:${userId}`);
+    }
   };
 
   return (
@@ -98,54 +150,116 @@ function PostContainer({
           <div className="commentDialog_post">
             <div className="dialog_post_user">
               <div className="dialog_post_user_image">
-                <img src={ProfilePicture} alt="" />
+                <img src={activeUser?.photo} alt="" />
               </div>
               <div className="commentDialog_post_user_info">
-                <p className="commentDialog_post_userFullname">Dhruval Patel</p>
+                <p className="commentDialog_post_userFullname">
+                  {activeUser?.fullname}
+                </p>
               </div>
             </div>
 
-            <div className="commentDialog_post_description"></div>
+            <div className="commentDialog_post_description">
+              {postDescription?.map((_) => (
+                <p>{_}</p>
+              ))}
+
+              {(postImages?.length > 0 || postVideos?.length > 0) && (
+                <div
+                  className="media__carousel"
+                  style={{
+                    width: "200px",
+                    height: "200px",
+                    marginBottom: "50px",
+
+                    alignSelf: "center",
+                  }}
+                >
+                  <Carousel
+                    style={{
+                      height: "100%",
+                      width: "100%",
+
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                    indicators={false}
+                  >
+                    {postImages?.map((image) => (
+                      <Carousel.Item
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      >
+                        <img
+                          src={image}
+                          alt=""
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                          }}
+                        />
+                      </Carousel.Item>
+                    ))}
+                    {postVideos?.map((video) => (
+                      <Carousel.Item
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      >
+                        <video
+                          src={video}
+                          controls
+                          width="200px"
+                          height="200px"
+                        />
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="commentDialog__comment">
             <div className="commentDialog_currentUser">
               <div className="commentDialog_currentUserImage">
-                <img src={PradhumanImage} alt="" />
+                <img src={currentUser.photo} alt="" />
               </div>
             </div>
             <div className="commentDialog_commentInput">
-              <TextareaAutosize placeholder="Comment Here" />
+              <TextareaAutosize
+                placeholder="Comment Here"
+                onChange={(e) => setComment(e.target.value)}
+                value={comment}
+              />
             </div>
           </div>
           <div className="commentDialog_commentOptions">
-            <div className="commentDialog_options_container">
-              <img src={GalleryIcon} alt="" />
-              <img src={EmojiIcon} alt="" />
-            </div>
-
             <div className="commentDialog_commentReplybtn">
-              <button>Reply</button>
+              <button onClick={handleComment}>Reply</button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
-      <div className="post_user">
+      <div className="post_user" onClick={() => gotoUser(userId)}>
         <div className="post_userImage">
-          <img src={userImage} alt="" />
+          <img src={activeUser?.photo} alt="" />
         </div>
         <div className="post_userInfo">
-          <p className="post_userFullName">{userName}</p>
+          <p className="post_userFullName">{activeUser?.fullname}</p>
         </div>
       </div>
 
       <div className="post_description">
         {postDescription?.map((_) => (
-          <pre>{`${_}`}</pre>
+          <p>{_}</p>
         ))}
       </div>
 
-      {(postImages.length > 0 || postVideos.length > 0) && (
+      {/* {(postImages.length > 0 || postVideos.length > 0) && (
         <div className="post__media__file">
           {postImages?.map((image) => (
             <div className="media__container">
@@ -154,9 +268,61 @@ function PostContainer({
           ))}
           {postVideos?.map((video) => (
             <div className="media__container">
-              <video src={video} width="100%" height="100%" controls />
+              <video src={video} controls />
             </div>
           ))}
+        </div>
+      )} */}
+
+      {(postImages?.length > 0 || postVideos?.length > 0) && (
+        <div
+          className="media__carousel"
+          style={{
+            width: "300px",
+            height: "300px",
+            marginBottom: "50px",
+
+            alignSelf: "center",
+          }}
+        >
+          <Carousel
+            style={{
+              height: "100%",
+              width: "100%",
+
+              display: "flex",
+              alignItems: "center",
+            }}
+            indicators={false}
+          >
+            {postImages?.map((image) => (
+              <Carousel.Item
+                style={{
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <img
+                  src={image}
+                  alt=""
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                />
+              </Carousel.Item>
+            ))}
+            {postVideos?.map((video) => (
+              <Carousel.Item
+                style={{
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <video src={video} controls width="300px" height="300px" />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
       )}
 
@@ -192,7 +358,16 @@ function PostContainer({
         </div>
       </div>
 
-      <div className="recent_comment"></div>
+      <div className="recent_comment">
+        {commentOnPost?.length > 0 && (
+          <CommentContainer
+            name={commentOnPost[0].data().userName}
+            photo={commentOnPost[0].data().photo}
+            comment={commentOnPost[0].data().comment}
+            id={commentOnPost[0].data().id}
+          />
+        )}
+      </div>
     </div>
   );
 }

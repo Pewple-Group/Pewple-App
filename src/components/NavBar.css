@@ -23,6 +23,7 @@
   height: 32px;
   margin-left: 60px;
   margin-right: 60px;
+  position: relative;
 }
 
 .navbar-searchContainer > input {
@@ -35,7 +36,7 @@
   box-sizing: border-box;
   backdrop-filter: blur(12px);
   /* Note: backdrop-filter has minimal browser support */
-
+  outline: none;
   border-radius: 15px;
 }
 
@@ -62,4 +63,16 @@
   font-family: "Raleway", sans-serif;
   color: #000000;
   font-weight: 500;
+}
+
+.searched__User {
+  position: absolute;
+  top: 40px;
+  z-index: 1000;
+  width: 100%;
+  height: fit-content !important;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
 }

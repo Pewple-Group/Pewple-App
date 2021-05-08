@@ -1,11 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Teamtodo.css";
 import addIcon from "../assets/plus.svg";
 import RemoveIcon from "../assets/remove.svg";
 import TextareaAutosize from "react-textarea-autosize";
-function Teamtodo() {
+import db from "../firebase";
+import firebase from "firebase";
+function Teamtodo({ teamId }) {
   const [addTodo, setAddTodo] = useState(false);
   const [deleteTodo, setDeleteTodo] = useState(false);
+  const [newTodo, setNewTodo] = useState("");
+  const [todoList, setTodoList] = useState([]);
+
+  const addNewTodo = (e) => {
+    e.preventDefault();
+
+    db.collection("Teams").doc(teamId).collection("Todo").add({
+      todo: newTodo,
+      timeStamp: firebase.firestore.Timestamp.now(),
+    });
+
+    setNewTodo("");
+    setAddTodo(false);
+  };
+
+  useEffect(() => {
+    const getTodoList = async () => {
+      const todo = await db
+        .collection("Teams")
+        .doc(teamId)
+        .collection("Todo")
+        .orderBy("timeStamp", "asc")
+        .onSnapshot((snapshot) => {
+          setTodoList(snapshot.docs);
+        });
+    };
+    getTodoList();
+  }, []);
+
+  const onDelete = (todoId) => {
+    db.collection("Teams").doc(teamId).collection("Todo").doc(todoId).delete();
+    setDeleteTodo(false);
+  };
   return (
     <div className="Teamtodolist">
       <div className="Todo">
@@ -58,46 +93,36 @@ function Teamtodo() {
         </div>
         {addTodo ? (
           <div className="addNewTodo">
-            <TextareaAutosize placeholder="Type Here .." />
+            <TextareaAutosize
+              placeholder="Type Here .."
+              onChange={(e) => setNewTodo(e.target.value)}
+              value={newTodo}
+            />
 
             <div className="addNewTodo_btn">
-              <button>Add</button>
+              <button onClick={addNewTodo}>Add</button>
             </div>
           </div>
         ) : deleteTodo ? (
           <div className="deleteTodoContainer">
             <div className="todo-item-container">
-              <div className="deletetodo-item">
-                <input type="checkbox" name="" id="" />
-                <p>Grab all the component from scratch</p>
-              </div>
-              <div className="deletetodo-item">
-                <input type="checkbox" name="" id="" />
-                <p>
-                  finish the meal pd!!! & get back to work and finish it asap
-                </p>
-              </div>
-              <div className="deletetodo-item">
-                <input type="checkbox" name="" id="" />
-                <p>Grab all the materials you required</p>
-              </div>
-            </div>
-
-            <div className="delete__todo__btn">
-              <button>Delete</button>
+              {todoList.map((todo) => (
+                <div
+                  className="deletetodo-item"
+                  onClick={() => onDelete(todo.id)}
+                >
+                  <p>{todo.data().todo}</p>
+                </div>
+              ))}
             </div>
           </div>
         ) : (
           <div className="todo-item-container">
-            <div className="todo-item">
-              <p>Grab all the component from scratch</p>
-            </div>
-            <div className="todo-item">
-              <p>finish the meal pd!!! & get back to work and finish it asap</p>
-            </div>
-            <div className="todo-item">
-              <p>Grab all the materials you required</p>
-            </div>
+            {todoList.map((todo) => (
+              <div className="todo-item">
+                <p>{todo.data().todo}</p>
+              </div>
+            ))}
           </div>
         )}
       </div>

@@ -3,12 +3,12 @@ import "./Teams.css";
 import NavBar from "../components/NavBar";
 import Sidebar from "../components/Sidebar";
 import TeamList from "../components/TeamList";
-function Teams() {
+function Teams({ signOut, user }) {
   return (
     <div className="Teams">
-      <Sidebar />
+      <Sidebar signOut={signOut} user={user} />
       <div className="main-container">
-        <NavBar title="Teams" />
+        <NavBar title="Teams" CurrentUser={user} />
 
         <div className="teams_components">
           <TeamList />

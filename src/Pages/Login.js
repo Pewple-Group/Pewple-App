@@ -23,10 +23,14 @@ function Login({ setSignUp, setUser }) {
           });
           const newUser = {
             fullname: result.user.displayName,
-            photo: result.user.photoURL,
+            photo: result.user.photoURL
+              ? result.user.photoURL
+              : "https://firebasestorage.googleapis.com/v0/b/pewple-app.appspot.com/o/defaultUser.png?alt=media&token=b888c545-0c3f-44ce-9a00-9cefbd2d02bf",
             email: email,
+            id: result.user.uid,
           };
           setUser(newUser);
+          db.collection("users").doc(result.user.uid).set(newUser);
           localStorage.setItem("user", JSON.stringify(newUser));
         } else {
           alert("please verify your account");
@@ -42,6 +46,9 @@ function Login({ setSignUp, setUser }) {
           fullname: result.user.displayName,
           email: result.user.email,
           photo: result.user.photoURL,
+          id: result.user.uid,
+          profession: "",
+          bio: [],
         };
         setUser(newUser);
         db.collection("users").doc(result.user.uid).set(newUser);

@@ -13,7 +13,22 @@
 .user-Profile::-webkit-scrollbar {
   display: none;
 }
+.user__image {
+  position: relative;
+}
 
+.user__image .MuiSvgIcon-root {
+  position: absolute;
+  bottom: 5px;
+  right: -5px;
+  visibility: hidden;
+}
+.user__image:hover .MuiSvgIcon-root {
+  visibility: visible;
+}
+.user__image:hover > img {
+  opacity: 0.5;
+}
 .user__image > img {
   width: 120px;
   border: 0.5px solid lightgray;
@@ -28,6 +43,7 @@
   margin: 20px;
   border-bottom: 1px solid lightgray;
   padding-bottom: 30px;
+  width: 90%;
 }
 
 .user__name > p {
@@ -39,6 +55,7 @@
   text-align: center;
   margin-top: 5px;
   color: #000000;
+  text-transform: capitalize;
 }
 
 .user__passion {
@@ -59,13 +76,16 @@
 }
 
 .user__description > p {
-  font-family: Roboto;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 25px;
-  /* or 192% */
+  line-height: 18px;
+  width: 100%;
 
+  /* or 192% */
+  word-break: break-all;
+  line-break: strict;
   color: #000000;
 }
 
@@ -73,6 +93,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
 .user__website_link {
@@ -121,4 +142,86 @@
 
 .user__post__container {
   margin-left: 20px;
+  align-self: center;
+  width: 90%;
+}
+
+.edit_UserInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user_profession {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.user_profession > p {
+  font-size: 16px !important;
+  margin-left: 18px;
+  margin-bottom: 7px;
+  margin-top: 10px;
+}
+
+.user_profession > input {
+  width: 95%;
+  align-self: center;
+  height: 40px;
+  border-radius: 15px;
+  padding: 9px 12px 11px 12px;
+  border: 1px solid lightgray;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.user__bio {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.user__bio > p {
+  font-size: 16px !important;
+  margin-left: 18px;
+  margin-bottom: 7px;
+  margin-top: 10px;
+}
+.user__bio > textarea {
+  align-self: center;
+  width: 95%;
+  min-height: 150px;
+  height: fit-content;
+  border: 1px solid lightgray;
+  resize: none;
+  outline: none;
+  padding: 10px;
+}
+
+.user__options {
+  width: 100%;
+
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.user__options > button {
+  height: 33px;
+  width: 100px;
+  border: none;
+  border-radius: 15px;
+  background-color: #4ea6e9;
+  margin-right: 20px;
+}
+
+.user__options > img {
+  margin-left: 15px;
 }

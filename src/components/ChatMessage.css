@@ -1,11 +1,11 @@
 .chat-message {
   margin: 10px;
-  width: 40%;
+  width: fit-content;
   display: flex;
   align-items: center;
   padding: 10px;
-
-  min-width: 250px;
+  width: 40%;
+  min-width: 200px;
 }
 
 .chatMessage_userImage {
@@ -20,21 +20,44 @@
 }
 
 .message_container {
-  background-color: #fff;
-
   width: 100%;
   height: auto;
-
+  height: 100%;
   display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
   height: fit-content;
   margin-right: 10px;
+  justify-content: space-between;
+
+  position: relative;
 }
 
-.message_container > p {
+.message {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.message > p {
   margin-top: -2px;
   width: 100%;
   word-break: break-all;
 }
+
+.message__date {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11px;
+}
+
+/* .media__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
+  grid-template-rows: 150px;
+  grid-gap: 10px;
+} */

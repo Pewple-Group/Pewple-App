@@ -13,6 +13,7 @@
 
 .comment_user {
   display: flex;
+  cursor: pointer;
 }
 
 .comment_userImage {
@@ -31,13 +32,8 @@
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   line-height: 18px;
-}
-.comment_userName {
-  font-size: 11px;
-  line-height: 13px;
-  font-weight: 400;
-  margin-top: -10px;
-  font-family: "Roboto", sans-serif;
+  margin-top: 10px;
+  text-transform: capitalize;
 }
 
 .comment_description {
@@ -48,16 +44,17 @@
 
 .comment_description > p {
   height: fit-content;
-  margin-bottom: 20px;
-
+  margin-bottom: 2px;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   letter-spacing: 0.2px;
   word-spacing: 2px;
-  width: 100%;
-  line-height: 20px;
+  width: 100% !important;
+
+  word-break: break-all;
   line-break: strict;
+  resize: none;
 }
 
 .comment_options {

@@ -10,11 +10,11 @@ function Home({ signOut, user }) {
     <div className="home">
       <Sidebar signOut={signOut} user={user} />
       <div className="main-container">
-        <NavBar title="Home" />
+        <NavBar title="Home" CurrentUser={user} />
 
         <div className="components-container">
           <FeedContainer user={user} />
-          <SecondContainer title="Recent" />
+          <SecondContainer title="Recent" user={user} />
         </div>
       </div>
     </div>

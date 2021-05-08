@@ -17,7 +17,7 @@
 .ms-UserProfile {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   width: 95%;
   height: 70px;
@@ -37,8 +37,15 @@
   border-radius: 50%;
 }
 
+.ms-profile__name__info {
+  margin-left: 10px;
+}
+
 .ms-profile-info {
   margin-left: 8px;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
 }
 
 .ms-profile-fullname {
@@ -87,4 +94,14 @@
 
 .ms_friendlist::-webkit-scrollbar {
   width: 2px;
+}
+
+.back__btn {
+  width: 18px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.back__btn > img {
+  width: 100%;
 }

@@ -123,6 +123,29 @@
   margin-bottom: 5px;
 }
 
+.newTeam__teamIdInput {
+  width: 100%;
+  margin-right: 15px;
+
+  align-self: center;
+  margin-top: 10px;
+}
+
+.newTeam__teamIdInput > p {
+  align-self: flex-start;
+}
+
+.newTeam__teamIdInput > input {
+  width: 97%;
+  height: 33px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 13px;
+  margin-top: -10px;
+}
+
 .newTeam_selectMember {
   width: 100%;
   margin-top: 20px !important;

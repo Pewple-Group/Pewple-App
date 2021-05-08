@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
-import ProfilePicture from "../assets/Dhruval.jpeg";
+
 import DropDown from "../assets/Dropdown.svg";
 import HomeLogo from "../assets/home.png";
 import FriendsLogo from "../assets/friends.svg";
 import TeamLogo from "../assets/people.svg";
 import FilemanagerLogo from "../assets/source.svg";
 import LogOutLogo from "../assets/logout.svg";
-import { auth } from "../firebase";
+import db, { auth } from "../firebase";
 import { useHistory } from "react-router-dom";
 
 function Sidebar({ small, signOut, user }) {
   const history = useHistory();
+  const [activeUser, setActiveUser] = useState({});
+  const gotoFile = () => {
+    history.push(`/file:${auth.currentUser?.uid}`);
+  };
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const data = await db
+        .collection("users")
+        .doc(user.id)
+        .onSnapshot((snapshot) => setActiveUser(snapshot.data()));
+    };
+    getCurrentUser();
+  }, []);
+
+  const gotoProfile = (userId) => {
+    if (userId) {
+      history.push(`/profile:${userId}`);
+    }
+  };
   return (
     <div className="sidebar">
       <div className="sidebar_component">
         <div className="sidebar-container">
-          <div className="sidebar-UserProfile">
+          <div
+            className="sidebar-UserProfile"
+            onClick={() => gotoProfile(activeUser?.id)}
+          >
             <div className="profile-img">
-              <img src={user?.photo} alt="" />
+              <img src={activeUser?.photo} alt="" />
             </div>
             {!small && (
               <div className="profile-info">
-                <p className="profile-fullname">{user?.fullname}</p>
-                <p className="profile-username">{user?.email}</p>
+                <p className="profile-fullname">{activeUser?.fullname}</p>
+                <p className="profile-username">{activeUser?.email}</p>
               </div>
             )}
-            <div className="profile-dropdown">
-              <img src={DropDown} alt="" />
-            </div>
           </div>
 
           <div className="sidebar-options">
@@ -57,13 +76,11 @@ function Sidebar({ small, signOut, user }) {
                 {!small && <p>Teams</p>}
               </Link>
             </div>
-            <div className="sidebar-option">
-              <Link to="/filemanager" className="sidebar-link">
-                <div className="option-img">
-                  <img src={FilemanagerLogo} alt="" />
-                </div>
-                {!small && <p>File Manager</p>}
-              </Link>
+            <div className="sidebar-option" onClick={gotoFile}>
+              <div className="option-img">
+                <img src={FilemanagerLogo} alt="" />
+              </div>
+              {!small && <p>File Manager</p>}
             </div>
           </div>
         </div>

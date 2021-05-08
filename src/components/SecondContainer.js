@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FriendProfile from "./FriendProfile";
 import "./SecondContainer.css";
 import ProfilePicture from "../assets/Dhruval.jpeg";
 import PradhumanImage from "../assets/profile.jpg";
-function SecondContainer({ title, isRecent, isSuggestion }) {
+import db from "../firebase";
+function SecondContainer({ title, isRecent, isSuggestion, user }) {
+  const [recent, setRecent] = useState([]);
+  useEffect(() => {
+    const getRecent = async () => {
+      const data = await db
+        .collection("users")
+        .doc(user.id)
+        .collection("recent")
+        .onSnapshot((snapshot) => {
+          setRecent(snapshot.docs);
+        });
+    };
+
+    getRecent();
+  }, []);
   return (
     <div className="recent">
       <div className="recent-glass">
@@ -12,18 +27,16 @@ function SecondContainer({ title, isRecent, isSuggestion }) {
         </div>
 
         <div className="FriendsList">
-          <FriendProfile
-            name="Dhruval Patel"
-            message="How, are you Bro?"
-            friendsImage={ProfilePicture}
-            isRecent={true}
-          />
-          <FriendProfile
-            name="Pradhuman Patel"
-            message="How, are you Bro?"
-            friendsImage={PradhumanImage}
-            isRecent={true}
-          />
+          {recent?.map((_) => (
+            <FriendProfile
+              name={_?.data().name}
+              id={_.id}
+              friendsImage={_?.data().photo}
+              from="messenger"
+              isRecent={true}
+              message={_.data().message}
+            />
+          ))}
         </div>
       </div>
     </div>

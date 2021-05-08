@@ -6,8 +6,9 @@
 }
 .suggestion-glass {
   width: 90%;
-  height: fit-content;
-
+  height: 400px;
+  display: flex;
+  flex-direction: column;
   background: rgba(255, 255, 255, 0.5);
   border: 4.68px solid rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
@@ -15,6 +16,7 @@
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 15px;
 }
+
 .suggestion-glass > p {
   width: 80px;
   height: 20px;
@@ -34,7 +36,15 @@
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 23px;
   margin: 10px;
+}
+
+.FriendsList {
+  overflow-y: scroll;
+  flex: 1;
+}
+.FriendsList::-webkit-scrollbar {
+  width: 3px;
 }

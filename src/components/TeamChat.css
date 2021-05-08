@@ -21,18 +21,19 @@
 .Chat-Top {
   width: 100%;
   height: 60px;
-
+  flex-direction: column;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: center;
 }
 .Chat-navtitle {
+  margin-left: 20px;
 }
 .Chat-navtitle > p {
   font-family: "Raleway", sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 18px;
   line-height: 19px;
   text-align: center;
 

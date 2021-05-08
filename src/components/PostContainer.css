@@ -10,6 +10,7 @@
 .post_user {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .post_userImage {
   width: 35px;
@@ -35,9 +36,10 @@
   align-self: center;
   width: 85%;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.post_description > pre {
+.post_description > p {
   height: fit-content;
   margin-bottom: 20px;
 
@@ -46,6 +48,9 @@
   font-weight: 400;
   letter-spacing: 0.2px;
   word-spacing: 2px;
+  word-break: break-all;
+  width: 100%;
+  line-break: strict;
 }
 
 .post_options {
@@ -65,6 +70,7 @@
 .option_section > img {
   width: 18px;
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .option_section > p {
@@ -139,17 +145,40 @@
   align-self: center;
   margin-bottom: 20px;
   margin-left: 20px;
+
+  height: fit-content;
+  display: flex;
+  word-break: break-all;
+  line-break: strict;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .commentDialog_post_description > pre {
   font-size: 14px;
   font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.commentDialog_post_description
+  .media__carousel
+  .carousel
+  .carousel-control-prev {
+  left: -30px !important;
+  top: 70px !important;
+}
+.commentDialog_post_description
+  .media__carousel
+  .carousel
+  .carousel-control-next {
+  right: -30px !important;
+  top: 70px !important;
 }
 
 .commentDialog__comment {
   display: flex;
   align-items: flex-start;
-  height: 200px;
+  height: fit-content;
   padding: 10px;
   width: 100%;
   margin-top: 10px;
@@ -178,21 +207,22 @@
 }
 
 .commentDialog_commentInput > textarea {
-  border: none !important;
   outline: none;
   margin-top: 15px;
   line-height: 20px;
   letter-spacing: 1px;
   font-size: 15px !important;
   width: 100%;
+  border: none;
   resize: none;
 }
 
 .commentDialog_commentOptions {
   display: flex;
   margin-top: 20px;
-  align-items: center;
-  justify-content: space-between;
+
+  flex-direction: column;
+  align-items: flex-end;
   width: 100%;
 }
 
@@ -214,30 +244,56 @@
 }
 
 .post__media__file {
-  width: 100%;
-  height: 300px;
-  display: flex;
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(120px, 37%));
+  grid-template-rows: minmax(120px, 48%);
+
+  grid-gap: 10px;
+  align-self: center;
+
   align-items: center;
   justify-content: center;
-  overflow-x: scroll;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-/* .post__media__file::-webkit-scrollbar {
-  display: none;
-} */
+.post__media__file::-webkit-scrollbar {
+}
 
 .media__container {
-  width: 350px;
-
+  width: 100%;
   height: 100%;
-  margin-left: 10px;
-
-  border: 1px solid lightgray;
   display: flex;
+  align-items: center;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .media__container > img {
   width: 100%;
   height: 100%;
+}
+.media__container > video {
+  width: 100%;
+  height: 100% !important;
+  max-height: 200px;
+  min-height: 120px;
+}
+.carousel-control-next,
+.carousel-control-prev {
+  height: 100px !important;
+  top: 100px !important;
+  background-color: gray;
+}
+
+.carousel-control-prev {
+  left: -45px !important;
+}
+
+.carousel-control-next {
+  right: -45px !important;
+}
+
+.carousel-item {
+  margin-right: 30px !important;
 }
